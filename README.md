@@ -3,8 +3,8 @@
 
 * [Смета](https://docs.google.com/spreadsheets/d/1C4ZWYfL_dpahk5ZyMGiEqAj_xCu-5W8fVgApKHZqpdc/edit?usp=sharing)
 * [Сравнения квадракоптеров](https://docs.google.com/spreadsheets/d/1HQJP0jHG34jIxu3yz2FGzEjPffqKhuN_xqDL0eSfckQ/edit?usp=sharing)
-* [Структурная схема]()
-* [Планирование]()
+* [Структурная схема](https://www.lucidchart.com/invitations/accept/95d80432-29b0-4f8f-9477-1a1ccf62f912)
+* [Планирование](https://docs.google.com/document/d/12jamCnUTxGByp8_RpHTl7Sly5GyypFapsYD07BdgryU/edit?usp=sharing)
 * [Дневник]()
 * [Документация]()
 
