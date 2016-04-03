@@ -12,9 +12,11 @@ namespace Pathfinder.Simulation {
         /// </summary>
         /// <param name="rotations">Vector3 of rotations in degrees (roll, pitch, yaw).</param>
         public void SetRotations(Vector3 rotations) {
-            transform.rotation = Quaternion.Euler(rotations.x.Degrees(),
-                                                  rotations.z.Degrees(),
-                                                  rotations.y.Degrees());
+            transform.rotation = Quaternion.identity;
+
+            AddRoll(rotations.x);
+            AddPitch(rotations.y);
+            AddYaw(rotations.z);
         }
         
         /// <summary>
