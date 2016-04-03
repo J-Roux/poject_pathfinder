@@ -14,23 +14,26 @@ public class PointCloud : MonoBehaviour {
 
         CreateMesh();
     }
-    
+
+    float NormalOf(float y) {
+        //return Mathf.Exp(-Mathf.Pow(2.5f * x, 2) / 2);
+        return Mathf.Sqrt(-2f * Mathf.Log(y)) / 2.5f;
+    }
+
     void CreateMesh() {
+
         Vector3[] points = new Vector3[numPoints];
         int[] indecies = new int[numPoints];
         Color[] colors = new Color[numPoints];
 
         for(int i=0; i < points.Length; i++) {
-            points[i] = new Vector3(Random.Range(-10f, 10f),
-                                    Random.Range(-10f, 10f),
-                                    Random.Range(-10f, 10f));
+            var x = 10f * NormalOf(Random.Range(0f, 1f));
+            var y = 10f * NormalOf(Random.Range(0f, 1f));
+            points[i] = new Vector3(x, 0f, y);
 
             indecies[i] = i;
 
-            colors[i] = new Color(Random.Range(0.0f, 1.0f),
-                                  Random.Range(0.0f, 1.0f),
-                                  Random.Range(0.0f, 1.0f)
-                                  ,1.0f);
+            colors[i] = new Color(x / 10f, NormalOf(Random.Range(0f, 1f)), y / 10f, 1.0f);
         }
         
         mesh.vertices = points;
