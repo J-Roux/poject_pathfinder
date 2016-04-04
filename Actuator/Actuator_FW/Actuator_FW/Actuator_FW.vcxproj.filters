@@ -21,5 +21,19 @@
     <ClInclude Include="__vm\.Actuator_FW.vsarduino.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="MPUControl.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="CompassControl.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="MPUControl.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="CompassControl.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>

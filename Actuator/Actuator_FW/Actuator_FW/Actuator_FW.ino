@@ -1,18 +1,16 @@
+#include <Arduino.h>
 #include <Wire.h>
+#include "MPUControl.h"
+#include "CompassControl.h"
+
 #include <Adafruit_Sensor.h>
 #include <Adafruit_HMC5883_U.h>
-#include "I2Cdev.h"
+#include <I2Cdev.h>
 #include "MPU6050_6Axis_MotionApps20.h"
-
-int16_t ax, ay, az;
-int16_t gx, gy, gz;
 
 /* Assign a unique ID to this sensor at the same time */
 Adafruit_HMC5883_Unified mag = Adafruit_HMC5883_Unified(12345);
 MPU6050 mpu;
-
-#define OUTPUT_READABLE_YAWPITCHROLL
-#define OUTPUT_READABLE_REALACCEL
 
 // MPU control/status vars
 bool dmpReady = false;  // set true if DMP init was successful
@@ -28,11 +26,8 @@ VectorInt16 aa;         // [x, y, z]            accel sensor measurements
 VectorInt16 aaReal;     // [x, y, z]            gravity-free accel sensor measurements
 VectorInt16 aaWorld;    // [x, y, z]            world-frame accel sensor measurements
 VectorFloat gravity;    // [x, y, z]            gravity vector
-float euler[3];         // [psi, theta, phi]    Euler angle container
 float ypr[3];           // [yaw, pitch, roll]   yaw/pitch/roll container and gravity vector
 
-						// packet structure for InvenSense teapot demo
-uint8_t teapotPacket[14] = { '$', 0x02, 0,0, 0,0, 0,0, 0,0, 0x00, 0x00, '\r', '\n' };
 
 volatile bool mpuInterrupt = false;     // indicates whether MPU interrupt pin has gone high
 void dmpDataReady() {
@@ -56,7 +51,7 @@ void setup(void)
 	mpu.setXGyroOffset(220);
 	mpu.setYGyroOffset(76);
 	mpu.setZGyroOffset(-85);
-	mpu.setZAccelOffset(1788); // 1688 factory default for my test chip
+	mpu.setZAccelOffset(-150); // 1688 factory default for my test chip
 
 							   // make sure it worked (returns 0 if so)
 	if (devStatus == 0) {
@@ -147,12 +142,13 @@ void loop(void)
 		mpu.dmpGetAccel(&aa, fifoBuffer);
 		mpu.dmpGetGravity(&gravity, &q);
 		mpu.dmpGetLinearAccel(&aaReal, &aa, &gravity);
-		Serial.print("areal\t");
-		Serial.print(aaReal.x);
+		mpu.dmpGetLinearAccelInWorld(&aaWorld, &aaReal, &q);
+		Serial.print("aworld\t");
+		Serial.print(aaWorld.x);
 		Serial.print("\t");
-		Serial.print(aaReal.y);
+		Serial.print(aaWorld.y);
 		Serial.print("\t");
-		Serial.println(aaReal.z);
+		Serial.println(aaWorld.z);
 
 	}
 

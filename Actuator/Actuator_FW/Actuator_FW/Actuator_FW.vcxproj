@@ -45,8 +45,8 @@
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
-      <AdditionalIncludeDirectories>C:\Program Files (x86)\Arduino\hardware\arduino\avr\cores\arduino;C:\Program Files (x86)\Arduino\hardware\arduino\avr\variants\standard;D:\Code\project_pathfinder\Actuator\Actuator_FW\Actuator_FW;D:\Documents\Arduino\libraries\Adafruit_HMC5883_Unified;D:\Documents\Arduino\libraries\Adafruit_HMC5883_Unified\utility;D:\Documents\Arduino\libraries\Adafruit_Unified_Sensor;D:\Documents\Arduino\libraries\Adafruit_Unified_Sensor\utility;D:\Documents\Arduino\libraries\I2Cdev;D:\Documents\Arduino\libraries\I2Cdev\utility;D:\Documents\Arduino\libraries\MPU6050;D:\Documents\Arduino\libraries\MPU6050\utility;C:\Program Files (x86)\Arduino\hardware\arduino\avr\libraries\Wire;C:\Program Files (x86)\Arduino\hardware\arduino\avr\libraries\Wire\utility;C:\Program Files (x86)\Arduino\libraries;C:\Program Files (x86)\Arduino\hardware\arduino\avr\libraries;C:\Program Files (x86)\Microsoft Visual Studio 14.0\Common7\IDE\Extensions\bpnh5uvi.4nm\Micro Platforms\default\debuggers;D:\Documents\Arduino\libraries;C:\Program Files (x86)\Arduino\hardware\arduino\avr\cores\arduino;C:\Program Files (x86)\Arduino\hardware\arduino\avr\variants\standard;C:\Program Files (x86)\Microsoft Visual Studio 14.0\Common7\IDE\Extensions\bpnh5uvi.4nm\Micro Platforms\default\debuggers\VM_DBG;C:\Program Files (x86)\Microsoft Visual Studio 14.0\Common7\IDE\Extensions\bpnh5uvi.4nm\Micro Platforms\default\debuggers;C:\Program Files (x86)\Arduino\hardware\arduino\avr\libraries\Wire;D:\Documents\Arduino\libraries\Adafruit_Unified_Sensor;D:\Documents\Arduino\libraries\Adafruit_HMC5883_Unified;D:\Documents\Arduino\libraries\I2Cdev;D:\Documents\Arduino\libraries\MPU6050;C:\Program Files (x86)\Arduino\libraries;C:\Program Files (x86)\Arduino\hardware\arduino\avr\libraries;D:\Documents\Arduino\libraries;C:\Program Files (x86)\Arduino\hardware\arduino\avr\libraries\Wire\utility;C:\Program Files (x86)\Arduino\hardware\tools\avr/avr/include/;C:\Program Files (x86)\Arduino\hardware\tools\avr//avr/include/avr/;C:\Program Files (x86)\Arduino\hardware\tools\avr/lib\gcc\avr\4.8.1\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <ForcedIncludeFiles>D:\Code\project_pathfinder\Actuator\Actuator_FW\Actuator_FW\__vm\.Actuator_FW.vsarduino.h;%(ForcedIncludeFiles)</ForcedIncludeFiles>
+      <AdditionalIncludeDirectories>C:\Users\Grifon\AppData\Local\arduino15\packages\arduino\hardware\avr\1.6.10\cores\arduino;C:\Users\Grifon\AppData\Local\arduino15\packages\arduino\hardware\avr\1.6.10\variants\standard;F:\Сode\project_pathfinder\Actuator\Actuator_FW\Actuator_FW;F:\Dropbox\Рабочая\Code\libraries\Adafruit_HMC5883_Unified;F:\Dropbox\Рабочая\Code\libraries\Adafruit_HMC5883_Unified\utility;F:\Dropbox\Рабочая\Code\libraries\Adafruit_Unified_Sensor;F:\Dropbox\Рабочая\Code\libraries\Adafruit_Unified_Sensor\utility;F:\Dropbox\Рабочая\Code\libraries\I2Cdev;F:\Dropbox\Рабочая\Code\libraries\I2Cdev\utility;F:\Dropbox\Рабочая\Code\libraries\MPU6050;F:\Dropbox\Рабочая\Code\libraries\MPU6050\utility;C:\Users\Grifon\AppData\Local\arduino15\packages\arduino\hardware\avr\1.6.10\libraries\Wire\src;C:\Users\Grifon\AppData\Local\arduino15\packages\arduino\hardware\avr\1.6.10\libraries\Wire\src\utility;C:\Program Files (x86)\Arduino\libraries;C:\Users\Grifon\AppData\Local\arduino15\packages\arduino\hardware\avr\1.6.10\libraries;F:\VS 2015\Common7\IDE\Extensions\nmcldgpg.jlx\Micro Platforms\default\debuggers;F:\Dropbox\Рабочая\Code\libraries;C:\Users\Grifon\AppData\Local\arduino15\packages\arduino\hardware\avr\1.6.10\cores\arduino;C:\Users\Grifon\AppData\Local\arduino15\packages\arduino\hardware\avr\1.6.10\variants\standard;C:\Users\Grifon\AppData\Local\arduino15\packages\arduino\hardware\avr\1.6.10\libraries\Wire\src;F:\Dropbox\Рабочая\Code\libraries\Adafruit_Unified_Sensor;F:\Dropbox\Рабочая\Code\libraries\Adafruit_HMC5883_Unified;F:\Dropbox\Рабочая\Code\libraries\I2Cdev;F:\Dropbox\Рабочая\Code\libraries\MPU6050;C:\Program Files (x86)\Arduino\libraries;C:\Users\Grifon\AppData\Local\arduino15\packages\arduino\hardware\avr\1.6.10\libraries;F:\VS 2015\Common7\IDE\Extensions\nmcldgpg.jlx\Micro Platforms\default\debuggers;F:\Dropbox\Рабочая\Code\libraries;C:\Program Files (x86)\Arduino\hardware\tools\avr/avr/include/;C:\Program Files (x86)\Arduino\hardware\tools\avr//avr/include/avr/;C:\Program Files (x86)\Arduino\hardware\tools\avr/lib\gcc\avr\4.8.1\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <ForcedIncludeFiles>F:\Сode\project_pathfinder\Actuator\Actuator_FW\Actuator_FW\__vm\.Actuator_FW.vsarduino.h;%(ForcedIncludeFiles)</ForcedIncludeFiles>
       <IgnoreStandardIncludePath>false</IgnoreStandardIncludePath>
       <PreprocessorDefinitions>__AVR_ATmega328p__;__AVR_ATmega328P__;F_CPU=16000000L;ARDUINO=10607;ARDUINO_AVR_UNO;ARDUINO_ARCH_AVR;__cplusplus=201103L;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
@@ -74,14 +74,20 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="CompassControl.h" />
+    <ClInclude Include="MPUControl.h" />
     <ClInclude Include="__vm\.Actuator_FW.vsarduino.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="CompassControl.cpp" />
+    <ClCompile Include="MPUControl.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>
   <ProjectExtensions>
     <VisualStudio>
-      <UserProperties arduino.upload.port="COM8" />
+      <UserProperties arduino.upload.port="COM4" />
     </VisualStudio>
   </ProjectExtensions>
 </Project>
