@@ -14,9 +14,9 @@ namespace Pathfinder.Simulation {
         public void SetRotations(Vector3 rotations) {
             transform.rotation = Quaternion.identity;
 
-            AddRoll(rotations.x);
-            AddPitch(rotations.y);
-            AddYaw(rotations.z);
+            AddRoll(rotations.x.Degrees());
+            AddPitch(rotations.y.Degrees());
+            AddYaw(rotations.z.Degrees());
         }
         
         /// <summary>
