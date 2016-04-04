@@ -5,6 +5,7 @@
 * [Сравнения квадрокоптеров](https://docs.google.com/spreadsheets/d/1HQJP0jHG34jIxu3yz2FGzEjPffqKhuN_xqDL0eSfckQ/edit?usp=sharing)
 * [Структурная схема](https://www.lucidchart.com/invitations/accept/95d80432-29b0-4f8f-9477-1a1ccf62f912)
 * [Планирование](https://docs.google.com/document/d/12jamCnUTxGByp8_RpHTl7Sly5GyypFapsYD07BdgryU/edit?usp=sharing)
+* [Планирование (excel table)](https://docs.google.com/spreadsheets/d/109n5DpzYehywyB18tn598F8HOy4HhbTWelKhO6Pjhns/edit?usp=sharing)
 * [Дневник](https://docs.google.com/document/d/1P_dgxAanFvxMPsYFByy8oyPoNq4PCfe6LbRTlZeAqtE/edit?usp=sharing)
 * [Документация]()
 
@@ -18,3 +19,5 @@
 Сборка квадрокоптера, создание шилдов и плат, позиционирование квадрокоптера             
 * [Кишкурно Максим](https://github.com/StarGrif):            
 Интерфейсы передачи данных, сборка квадрокоптера, позиционирование квадрокоптера  
+* [Ребедайло Евгений](https://github.com/Mokonadesu):    
+Софт для визуализации полученных данных, восстановления окружения из pointcloud.
