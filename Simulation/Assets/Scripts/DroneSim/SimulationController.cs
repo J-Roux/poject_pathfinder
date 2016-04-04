@@ -25,6 +25,24 @@ namespace Pathfinder.Simulation {
             } else if (Input.GetKey("q")) {
                 CurrentDrone.AddRoll(-ControlsSensitivity.x * Time.deltaTime);
             }
+
+			if (Input.GetKey("i")) {
+				CurrentDrone.SetAcceleration(CurrentDrone.transform.forward);
+			} else if (Input.GetKey("k")) {
+				CurrentDrone.SetAcceleration(CurrentDrone.transform.forward * -1f);
+			}
+
+			if (Input.GetKey(KeyCode.Space)) {
+				CurrentDrone.SetAcceleration(CurrentDrone.transform.up);
+			} else if (Input.GetKey(KeyCode.LeftShift)) {
+				CurrentDrone.SetAcceleration(CurrentDrone.transform.up * -1f);
+			}
+
+			if (Input.GetKey("l")) {
+				CurrentDrone.SetAcceleration(CurrentDrone.transform.right);
+			} else if (Input.GetKey("j")) {
+				CurrentDrone.SetAcceleration(CurrentDrone.transform.right * -1f);
+			}
         }
 
         private void HandleMouseControls() {

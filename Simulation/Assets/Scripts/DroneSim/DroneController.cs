@@ -7,6 +7,15 @@ namespace Pathfinder.Simulation {
 
     public class DroneController : MonoBehaviour {
         
+		private Rigidbody craftBody;
+
+		/// <summary>
+		/// Initializes drone components.
+		/// </summary>
+		private void Start() {
+			craftBody = GetComponent<Rigidbody>();
+		}
+
         /// <summary>
         /// Sets the rotations.
         /// </summary>
@@ -42,6 +51,14 @@ namespace Pathfinder.Simulation {
         public void AddYaw(float yaw) {
             transform.Rotate(0f, yaw.Degrees(), 0f);
         }
+
+		/// <summary>
+		/// Updates the craft's acceleration
+		/// </summary>
+		/// <param name="acceleration">Acceleration.</param>
+		public void SetAcceleration(Vector3 acceleration) {
+			craftBody.AddForce(acceleration, ForceMode.Acceleration);
+		}
     }
 
 }

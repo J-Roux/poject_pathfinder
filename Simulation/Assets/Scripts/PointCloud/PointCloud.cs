@@ -29,7 +29,9 @@ public class PointCloud : MonoBehaviour {
         for(int i=0; i < points.Length; i++) {
             var x = 10f * NormalOf(Random.Range(0f, 1f));
             var y = 10f * NormalOf(Random.Range(0f, 1f));
-            points[i] = new Vector3(x, 0f, y);
+			var z = 10f * NormalOf(Random.Range(0f, 1f));
+
+            points[i] = new Vector3(x, y, z);
 
             indecies[i] = i;
 
