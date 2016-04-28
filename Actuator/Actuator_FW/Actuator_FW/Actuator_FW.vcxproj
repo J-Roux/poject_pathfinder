@@ -74,13 +74,7 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="CompassControl.h" />
-    <ClInclude Include="MPUControl.h" />
     <ClInclude Include="__vm\.Actuator_FW.vsarduino.h" />
-  </ItemGroup>
-  <ItemGroup>
-    <ClCompile Include="CompassControl.cpp" />
-    <ClCompile Include="MPUControl.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

@@ -1,7 +1,0 @@
-// 
-// 
-// 
-
-#include "CompassControl.h"
-
-

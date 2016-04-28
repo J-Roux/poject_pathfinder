@@ -85,8 +85,4 @@ extern "C" void __cxa_pure_virtual() {;}
 #define portInputRegister(P)
 #define portModeRegister(P)
 #include <..\Actuator_FW\Actuator_FW.ino>
-#include <..\Actuator_FW\CompassControl.cpp>
-#include <..\Actuator_FW\CompassControl.h>
-#include <..\Actuator_FW\MPUControl.cpp>
-#include <..\Actuator_FW\MPUControl.h>
 #endif
