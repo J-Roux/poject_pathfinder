@@ -5,12 +5,12 @@ using namespace std;
 
 #include "Serial.h"
 
-#define COM_PORT "/dev/ttyUSB0"
+#define COM_PORT "/dev/ttyUSB1"
 #define BUF_SIZE 512
 
 int main()
 {
-	Serial test_serial(B38400, COM_PORT, BUF_SIZE);
+	Serial test_serial(B115200, COM_PORT, BUF_SIZE);
 	if (test_serial.connect())
 		cout << "Good" << endl;
 	else
