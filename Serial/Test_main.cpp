@@ -9,8 +9,7 @@ using namespace std;
 #define BUF_SIZE 512
 
 int main()
-{
-	Serial test_serial(B38400, COM_PORT, BUF_SIZE);
+{	Serial test_serial(B38400, COM_PORT, BUF_SIZE);
 	if (test_serial.connect())
 		cout << "Good" << endl;
 	else
@@ -18,6 +17,7 @@ int main()
 		cout << "Very bad!!" << endl;
 		return 1;
 	}
+
 	/*string send("Print test echo"), echo;
 	echo.reserve(BUF_SIZE);
 	int i = 0;
