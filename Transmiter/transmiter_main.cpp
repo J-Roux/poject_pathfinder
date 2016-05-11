@@ -17,8 +17,10 @@ using namespace std;
 #define PORT 12255
 
 volatile bool serial_wait = true, serial_ready = false;
+volatile bool frame_wait = true, frame_ready = false;
 
-string buffer;
+string serial_buffer;
+string frame_buffer;
 
 void serial_proc()
 {
@@ -29,14 +31,17 @@ void serial_proc()
 		cout << "COM port dont connect" << endl;
 		return;
 	}
-	string temp;
-	temp.reserve(COM_BUF_SIZE);
+	
 	while(true)
 	{
 		while(serial_wait);
 		serial_ready = false;
-		my_serial.read_str(temp);
-		buffer.append(temp.c_str(), temp.length());
+		my_serial.read_str(serial_buffer);
+		if(serial_buffer.empty())
+		{
+			serial_ready = true;
+			continue;
+		}
 		serial_ready = true;
 	}
 }
@@ -44,29 +49,39 @@ void serial_proc()
 void fileread_proc()
 {
 	cout << "Filereader proc start" << endl;
+	int frame_ds;
+	frame_ds = open("Frame_x.raw",  O_RDONLY);
+	uint8_t temp[4194304];
 	while(true)
 	{
-		
+		while(frame_wait);
+		frame_ready = false;		
+		read(frame_ds, temp, 4194304);
+		frame_buffer.assign((char*)temp);
+		frame_ready = true;		
 	}
 }
 
 void client_proc(int client_ds)
 {
 	cout << "Client work!" << endl;
-	serial_wait = false;
-	usleep(50);
+	serial_wait = frame_wait= false;	
+	usleep(500);
+	string client_buffer;
 	while(true)
 	{
-		serial_wait = true;
-		while(!serial_ready);
-		if(buffer.empty()) 
+		serial_wait = frame_wait = true;
+		while(!serial_ready || !frame_ready);
+		if(serial_buffer.empty()) 
 		{
-			serial_wait = false;
+			serial_wait = frame_wait = false;
 			continue;
 		}
-		write(client_ds, buffer.c_str(), buffer.length());
-		buffer.clear();
-		serial_wait = false;
+		//client_buffer.append(frame_buffer);
+		client_buffer.append(serial_buffer);		
+		write(client_ds, client_buffer.c_str(), client_buffer.length());
+		client_buffer.clear();
+		serial_wait = frame_wait = false;
 	}
 }
 
@@ -102,19 +117,18 @@ bool server_main_proc()
 	}
 
 	int client_ds;
-	if (true) 
-	{
-		client_ds = accept(server_ds, NULL, NULL);
-		thread client(&client_proc, client_ds);
-		client.join();
-	}
+	client_ds = accept(server_ds, NULL, NULL);
+	thread client(&client_proc, client_ds);
+	client.join();
 }
 
 int main()
 {
 	cout << "Start work" << endl;
-	thread t(&serial_proc);
+	thread filereader(&fileread_proc);
+	thread ser(&serial_proc);
 	if(!server_main_proc())
 		return 1;
-	t.join();
+	ser.join();
+	filereader.join();
 }

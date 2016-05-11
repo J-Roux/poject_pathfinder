@@ -203,7 +203,10 @@ int32_t Serial::read_str(std::string &str)
 	if (count_bytes != -1)
 	{
 		if (count_bytes == 0)
+		{
+			str.empty();
 			return 0;
+		}
 		str.assign((char *)temp_buffer);
 		return count_bytes;
 	}
