@@ -1,9 +1,9 @@
 test: serial.o test_main.o 
 	clear
-	g++ -o test.exe Serial.o Test_main.o
+	g++-4.7 -o test.exe Serial.o Test_main.o
 serial.o: Serial.cpp Serial.h 
-	g++ -Wall -std=c++11 -c Serial.cpp
+	g++-4.7 -Wall -std=c++11 -c Serial.cpp
 test_main.o: Test_main.cpp Serial.h
-	g++ -Wall -std=c++11 -c Test_main.cpp
+	g++-4.7 -Wall -std=c++11 -c Test_main.cpp
 clean:
 	rm Test_main.o Serial.o test.exe
