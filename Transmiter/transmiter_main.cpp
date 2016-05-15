@@ -12,7 +12,7 @@
 
 using namespace std;
 
-#define COM_PORT "/dev/ttyUSB0"
+#define COM_PORT "/dev/ttyACM0"
 #define COM_BUF_SIZE 512
 #define PORT 12255
 
@@ -81,6 +81,7 @@ void client_proc(int client_ds)
 		client_buffer.append(serial_buffer);		
 		write(client_ds, client_buffer.c_str(), client_buffer.length());
 		client_buffer.clear();
+        serial_buffer.clear();
 		serial_wait = frame_wait = false;
 	}
 }
