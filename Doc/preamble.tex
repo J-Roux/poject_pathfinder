@@ -343,7 +343,6 @@
 % Примечание: final нужен для переопределения режима draft, в котором листинги не выводятся в документ.
 \usepackage[final]{listings}
 
-
 % Зачем: настройка оформления листинга для языка F#
 \definecolor{bluekeywords}{rgb}{0.13,0.13,1}
 \definecolor{greencomments}{rgb}{0,0.5,0}
@@ -384,6 +383,14 @@
   frame=lr,
   rulecolor=\color{blue!80!black}}
 
+\lstset{
+  language=[Sharp]C,
+  basicstyle=\small\sffamily,
+  numbers=left,
+  numberstyle=\tiny,
+  frame=tb,
+  columns=fullflexible,
+  showstringspaces=false}
 
 % Зачем: Нумерация листингов в пределах секции
 \AtBeginDocument{\numberwithin{lstlisting}{section}}
