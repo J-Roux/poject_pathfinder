@@ -123,6 +123,7 @@ uint_fast32_t ticks = 0;
 
 void loop(void)
 {
+        String data;
 
 	// wait for MPU interrupt or extra packet(s) available
 	while (!mpuInterrupt && fifoCount < packetSize);
@@ -163,25 +164,37 @@ void loop(void)
 		mpu.dmpGetQuaternion(&q, fifoBuffer);
 		mpu.dmpGetGravity(&gravity, &q);
 		mpu.dmpGetYawPitchRoll(ypr, &q, &gravity);
-		Serial.print("ypr\t");
+		/*Serial.print("ypr\t");
 		Serial.print(ypr[0] * 180 / M_PI);
 		Serial.print("\t");
 		Serial.print(ypr[1] * 180 / M_PI);
 		Serial.print("\t");
-		Serial.println(ypr[2] * 180 / M_PI);
-
+		Serial.println(ypr[2] * 180 / M_PI);*/
+                data += "#";
+                data += "ypr\t";
+                data += ypr[0] * 180 / M_PI;
+                data += ypr[1] * 180 / M_PI;
+                data += ypr[2] * 180 / M_PI;
+                data += "\n";
+                
 		// display real acceleration, adjusted to remove gravity
 		mpu.dmpGetQuaternion(&q, fifoBuffer);
 		mpu.dmpGetAccel(&aa, fifoBuffer);
 		mpu.dmpGetGravity(&gravity, &q);
 		mpu.dmpGetLinearAccel(&aaReal, &aa, &gravity);
 		mpu.dmpGetLinearAccelInWorld(&aaWorld, &aaReal, &q);
-		Serial.print("aworld\t");
+		/*Serial.print("aworld\t");
 		Serial.print(aaWorld.x);
 		Serial.print("\t");
 		Serial.print(aaWorld.y);
 		Serial.print("\t");
-		Serial.println(aaWorld.z);
+		Serial.println(aaWorld.z);*/
+                data += "aworld\t";
+                data += aaWorld.x;
+                data += aaWorld.y;
+                data += aaWorld.z;
+                data += "\n";
+                
 
 	}
 
@@ -201,8 +214,13 @@ void loop(void)
 
 	if (heading > 2 * M_PI)
 		heading -= 2 * M_PI;
-	Serial.print("Heating: "); 
-	Serial.println(heading * 180 / M_PI);
+	//Serial.print("Heating: "); 
+	//Serial.println(heading * 180 / M_PI);
+                        data += "Heating: ";
+                data += heading * 180 / M_PI;
+                data += "\n";
 	DEBUG_PRINT("Time for mag: ");
 	//DEBUG_PRINTLN(micros() - ticks);
+        Serial.print(data);
+
 }
