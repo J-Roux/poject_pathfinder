@@ -15,6 +15,7 @@
 #define DEBUG_PRINTLN(messange)
 #endif
 
+#define g 9.81
 /* Assign a unique ID to this sensor at the same time */
 Adafruit_HMC5883_Unified mag = Adafruit_HMC5883_Unified(12345);
 MPU6050 mpu;
@@ -70,7 +71,7 @@ bool MPUInit(MPU6050 * mpu)
 		mpu->setXGyroOffset(220);
 		mpu->setYGyroOffset(76);
 		mpu->setZGyroOffset(-85);
-
+    mpu->setZAccelOffset(1788); 
 		// turn on the DMP, now that it's ready
 		DEBUG_PRINTLN("Enabling DMP...");
 		mpu->setDMPEnabled(true);
@@ -121,9 +122,10 @@ void setup(void)
 
 uint_fast32_t ticks = 0;
 
+
 void loop(void)
 {
-        String data;
+  String data;
 
 	// wait for MPU interrupt or extra packet(s) available
 	while (!mpuInterrupt && fifoCount < packetSize);
@@ -159,50 +161,43 @@ void loop(void)
 		// (this lets us immediately read more without waiting for an interrupt)
 		fifoCount -= packetSize;
 
-		
+
+
 		// display Euler angles in degrees
 		mpu.dmpGetQuaternion(&q, fifoBuffer);
 		mpu.dmpGetGravity(&gravity, &q);
 		mpu.dmpGetYawPitchRoll(ypr, &q, &gravity);
-		/*Serial.print("ypr\t");
-		Serial.print(ypr[0] * 180 / M_PI);
-		Serial.print("\t");
-		Serial.print(ypr[1] * 180 / M_PI);
-		Serial.print("\t");
-		Serial.println(ypr[2] * 180 / M_PI);*/
-                data += "#";
-                data += "ypr\t";
-                data += ypr[0] * 180 / M_PI;
-                data += ypr[1] * 180 / M_PI;
-                data += ypr[2] * 180 / M_PI;
-                data += "\n";
-                
+	
+    data += "#";
+    data += "ypr: ";
+    data += ypr[0] * 180 / M_PI;
+    data += " ";
+    data += ypr[1] * 180 / M_PI;
+    data += " ";
+    data += ypr[2] * 180 / M_PI;
+    data += "\n";
+         
 		// display real acceleration, adjusted to remove gravity
 		mpu.dmpGetQuaternion(&q, fifoBuffer);
 		mpu.dmpGetAccel(&aa, fifoBuffer);
 		mpu.dmpGetGravity(&gravity, &q);
 		mpu.dmpGetLinearAccel(&aaReal, &aa, &gravity);
 		mpu.dmpGetLinearAccelInWorld(&aaWorld, &aaReal, &q);
-		/*Serial.print("aworld\t");
-		Serial.print(aaWorld.x);
-		Serial.print("\t");
-		Serial.print(aaWorld.y);
-		Serial.print("\t");
-		Serial.println(aaWorld.z);*/
-                data += "aworld\t";
-                data += aaWorld.x;
-                data += aaWorld.y;
-                data += aaWorld.z;
-                data += "\n";
+
+    data += "aworld: ";
+    data += float(aaWorld.x) / 16384 * g ;
+    data += " ";
+    data += float(aaWorld.y) / 16384 * g;
+    data += " ";
+    data += float(aaWorld.z) / 16384 * g;
+    data += " ";
+    data += "\n";
                 
 
 	}
 
 	DEBUG_PRINT("Time for mpu: ");
-	//DEBUG_PRINTLN(micros() - ticks);
 
-	//ticks = micros();
-	// magnitometer
 	sensors_event_t event;
 	mag.getEvent(&event);
 
@@ -214,13 +209,13 @@ void loop(void)
 
 	if (heading > 2 * M_PI)
 		heading -= 2 * M_PI;
-	//Serial.print("Heating: "); 
-	//Serial.println(heading * 180 / M_PI);
-                        data += "Heating: ";
-                data += heading * 180 / M_PI;
-                data += "\n";
+
+  data += "Heating: ";
+  data += heading * 180 / M_PI;
+  data += "\n";
+
 	DEBUG_PRINT("Time for mag: ");
-	//DEBUG_PRINTLN(micros() - ticks);
-        Serial.print(data);
+	
+  Serial.print(data);
 
 }
